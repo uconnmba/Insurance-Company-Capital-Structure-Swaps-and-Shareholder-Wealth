@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{supertabular}
+\usepackage[round]{natbib}
+\usepackage[pdftex,pdftitle={Capital Structure Swaps},pdfstartview=FitH]{hyperref}
+\usepackage{longtable}
+\usepackage{fullpage}
+\newtheorem{hypothesis}{Hypothesis}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+
+\title{Comparative Statics of the Merton Margrabe Model with Information Asymmetry}
+\begin{document}
+\section{Merton-Margrabe Model}
+\begin{eqnarray}
+E&=&A \left[N\left(d_1\right)\right]- \alpha \delta L \left[N\left(d_2\right)\right] \nonumber \\
+d_1&=&\frac{\ln\frac{A}{\alpha \delta L}+0.5 V^2 t}{V\sqrt{t}} \nonumber \\ 
+d_2&=&\frac{\ln\frac{A}{\alpha \delta L}-0.5 V^2 t}{V\sqrt{t}}=d_1-V\sqrt{t} \nonumber \\
+V^2&=&\sigma_A^2 + \beta^2 \sigma_L^2 -2 \gamma \rho_{AL} \sigma_A \beta \sigma_L  \nonumber
+\end{eqnarray}
+where 
+\begin{eqnarray}
+A&=&\mbox{Assets}\nonumber \\
+L&=&\mbox{Liabilities} \nonumber \\
+\alpha&=& \mbox{relative change in liabilities post-swap} \left(0 < \alpha \le \infty \right) \nonumber \\
+\beta&=&\mbox{relative disagreement about liability volatility} \left(0\le \beta \right)\nonumber \\
+\delta&=& \mbox{relative disagreement about liability expected value} \left(0\le \delta \right) \nonumber \\
+\gamma&=& \mbox{relative disagreement about asset-liability correlation} \left(0\le \gamma \right) \nonumber
+\end{eqnarray}
+
+
+\section{Comparative Statics on Change in Liabilities}
+
+Take partial derivative of equity with respect to $\alpha$.
+
+\begin{eqnarray}
+\frac{\partial E}{\partial \alpha}&=&A \frac{\partial N\left(d_1\right)}{\partial d_1}\frac{\partial d_1}{\partial \alpha}-\delta L \left[N\left(d_2\right)\right]-\alpha \delta L \frac{\partial N\left(d_2\right)}{\partial d_2}\frac{\partial d_2}{\partial \alpha}
+\end{eqnarray}
+
+Note that:
+\begin{eqnarray}
+\frac{\partial N\left(d_1\right)}{d_1}&=&n\left(d_1\right) \nonumber\\
+\frac{\partial d_2}{\partial \alpha}&=&\frac{\partial d_1}{\partial \alpha} \nonumber\\
+\frac{\partial d_1}{\partial \alpha}&=&-\frac{1}{\alpha V \sqrt{t}} \nonumber\\
+d_1&=&\frac{\ln\frac{A}{\alpha \delta L}+0.5 V^2 t}{V\sqrt{t}} \nonumber \\
+\mbox{therefore} &&\nonumber \\
+d_1 V\sqrt{t}&=&\ln\frac{A}{\alpha \delta L}+0.5 V^2 t\nonumber\\
+d_1 V\sqrt{t}-0.5 V^2 t&=&\ln\frac{A}{\alpha \delta L} \nonumber\\
+A&=&\alpha \delta L e^{d_1 V\sqrt{t}-0.5 V^2 t }
+\end{eqnarray}
+
+Therefore, 
+\begin{equation}
+\frac{\partial E}{\partial \alpha}=A \frac{n\left(d_1\right)}{\alpha V \sqrt{t}}-\delta L\frac{n\left(d_1-V\sqrt{t}\right)}{V\sqrt{t}}-\alpha \delta L \left[N \left(d_2\right)\right]
+\end{equation}
+Substituting for $A$ and expanding the $n$ operator:
+\begin{eqnarray}
+\frac{\partial E}{\partial \alpha}&=&-\frac{\alpha \delta L}{\alpha V\sqrt{2t \pi}} e^{d_1 V\sqrt{t}-0.5 V^2 t} e^{-0.5 d_1^2} -\frac{\delta L}{V\sqrt{2t \pi}}e^{-0.5\left(d_1-V\sqrt{t}\right)^2}-\alpha \delta L \left[N \left(d_2\right)\right] \nonumber\\
+&=&-\frac{\delta L}{V\sqrt{2t \pi}}\left(e^{-0.5\left(d_1-V\sqrt{t}\right)^2}-e^{-0.5\left(d_1-V\sqrt{t}\right)^2}\right)-\alpha \delta L \left[N\left(d_2\right)\right]\nonumber\\
+&=&-\alpha \delta L \left[N\left(d_2\right)\right]
+\end{eqnarray}
+
+Thus, as long as liabilities are positive, equity value decreases in proportion to liabilities changed and any deviation between insider and market estimates of expected loss.
+
+\section{Comparative Statics on Degree of Information Asymmetry Regarding Volatility}
+
+Take partial derivative of equity with respect to $\beta$.
+
+\begin{eqnarray}
+\frac{\partial E}{\partial \beta}&=&A \frac{\partial N\left(d_1\right)}{\partial d_1}\frac{\partial d_1}{\partial \beta}-\alpha \delta L \frac{\partial N\left(d_2\right)}{\partial d_2}\frac{\partial d_2}{\partial \beta}
+\end{eqnarray}
+
+Maintain notes from prior section, and further let:
+
+\begin{eqnarray}
+S&=&\frac{\partial V}{\partial \beta}=\frac{\beta \sigma_L^2-\sigma_{AL}}{V} \nonumber\\
+L&=&\frac{A}{\alpha \delta}e^{-d_1 V \sqrt{t} + 0.5 V^2 t} \nonumber \\
+\frac{\partial d_1}{\partial \beta}&=&\frac{Sd_2}{V}\nonumber \\
+\frac{\partial d_2}{\partial \beta}&=&\frac{Sd_1}{V} \nonumber 
+\end{eqnarray}
+
+\newpage
+The steps for $\frac{\partial d_1}{\partial \beta}$ follow:
+
+\begin{eqnarray}
+d_1&=&\frac{\ln\frac{A}{\alpha \delta L}+0.5 V^2 t}{V\sqrt{t}}\nonumber \\
+\frac{\partial d_1}{\partial \beta}&=&\frac{\partial \left[\ln\frac{A}{\alpha \delta L}\left(\sigma_A^2 + \beta^2 \sigma_L^2 -2 \gamma \rho_{AL} \sigma_A \beta \sigma_L\right)^{-1/2} t^{-1/2} + 0.5\left(\sigma_A^2 + \beta^2 \sigma_L^2 -2 \gamma \rho_{AL} \sigma_A \beta \sigma_L\right) t^{1/2}\right]}{\partial \beta} \nonumber\\
+&=&\frac{t \left(-2 \gamma  \rho  \sigma _A \sigma _L+2 \beta  \sigma _L^2\right)}{2 \sqrt{t \left(\sigma _A^2-2 \beta  \gamma  \rho  \sigma _A \sigma _L+\beta ^2 \sigma _L^2\right)}}-\frac{t \left(-2 \gamma  \rho  \sigma _A \sigma _L+2 \beta  \sigma _L^2\right) \left(\ln \left[\frac{A}{L \alpha  \delta }\right]+0.5 t \left(\sigma _A^2-2 \beta  \gamma  \rho  \sigma _A \sigma _L+\beta ^2 \sigma _L^2\right)\right)}{2 \left(t \left(\sigma _A^2-2 \beta  \gamma  \rho  \sigma _A \sigma _L+\beta ^2 \sigma _L^2\right)\right){}^{3/2}}\nonumber\\
+&=&\frac{t \left(\gamma  \rho  \sigma _A \sigma _L-\beta  \sigma _L^2\right) \left(2 \ln \left[\frac{A}{L \alpha  \delta }\right]-t \left(\sigma _A^2-2 \beta  \gamma  \rho  \sigma _A \sigma _L+\beta ^2 \sigma _L^2\right)\right)}{2 \left(t \left(\sigma _A^2-2 \beta  \gamma  \rho  \sigma _A \sigma _L+\beta ^2 \sigma _L^2\right)\right){}^{3/2}}\nonumber \\
+&=&\frac{2t \left(\gamma  \rho  \sigma _A \sigma _L-\beta  \sigma _L^2\right) \left(\ln \left[\frac{A}{L \alpha  \delta }\right]-0.5t V^2\right)}{2 \left(t V^2\right){}^{3/2}}\nonumber \\
+&=&\frac{t \left(\gamma  \rho  \sigma _A \sigma _L-\beta  \sigma _L^2\right) \left(\ln \left[\frac{A}{L \alpha  \delta }\right]-0.5t V^2\right)}{t\sqrt{t}V^3}\nonumber \\
+&=&\frac{\left(\gamma  \rho  \sigma _A \sigma _L-\beta  \sigma _L^2\right) \left(\ln \left[\frac{A}{L \alpha  \delta }\right]-0.5t V^2\right)}{V^2 \sqrt{t}V}\nonumber \\
+&=&\frac{Sd_2}{V}\\
+&&\text{and} \nonumber \\
+\frac{\partial d_2}{\partial \beta}&=& \frac{Sd_1}{V}
+\end{eqnarray}
+
+
+Then:
+\begin{eqnarray}
+\frac{\partial E}{\partial \beta}&=&A \left[n\left(d_1\right)\right]\frac{Sd_2}{V}-\alpha \delta L \left[n\left(d_1-V\sqrt{t} \right)\right]\frac{Sd_1}{V}\nonumber \\
+&=&A \left[n\left(d_1\right)\right] \frac{S\left(d_1-V\sqrt{t}\right)}{V}-\frac{A}{\alpha \delta} e^{-d_1 V\sqrt{t}+0.5V^2 t} \left[n\left(d_1-V\sqrt{t}\right)\right] \frac{Sd_1}{V} \nonumber \\
+&=&A\frac{1}{\sqrt{2 \pi}} e^{-0.5 d_1^2}\frac{S\left(d_1-V\sqrt{t}\right)}{V}-\frac{A}{\alpha \delta \sqrt{2\pi}}e^{-d_1 V\sqrt{t}+0.5V^2 t-0.5d_1^2+d_1 V\sqrt{t}-0.5V^2t}\frac{Sd_1}{V} \nonumber \\
+&=&A\frac{1}{\sqrt{2 \pi}} e^{-0.5 d_1^2}\frac{S\left(d_1-V\sqrt{t}\right)}{V}-\frac{A}{\alpha \delta \sqrt{2\pi}}e^{-0.5 d_1^2}\frac{Sd_1}{V} \nonumber \\
+&=&\frac{A \left[n\left(d_1\right)\right]}{\alpha\delta}\times \frac{Sd_1-SV\sqrt{t}-Sd_1}{V} \nonumber\\
+&=&-\frac{AS\sqrt{t} \left[n\left(d_1\right)\right]}{\alpha\delta}
+\end{eqnarray}
+
+
+The sensitivity of equity value to disagreement about loss volatility is negative if the product of degree of disagreement and loss volatility is greater than the covariance between asset and loss volatility.  However, when assets and liability sufficiently covary, equity value may rise with disagreement.
+
+\section{Comparative Statics on Changing Liabilities with Volatility Information Asymmetry}
+To determine the relative change in equity value resulting from a change in liabilities when there is information asymmetry about volatility, we take the partial derivative with respect to volatility deviation and then change in liabilities. That is,
+
+\begin{eqnarray}
+\frac{\partial^2 E}{\partial \beta \partial \alpha} &=& \frac{\partial -\alpha^{-1} \delta^{-1} A S \sqrt{t} \left[N\left(d_1\right)\right]}{\partial \alpha} \nonumber\\
+&=& -\alpha^{-2} \delta^{-1} A S \sqrt{t} \left[N\left(d_1\right)\right] -\alpha^{-1} \delta^{-1} A S \sqrt{t} \frac{\partial N\left(d_1\right)}{\partial d_1} \frac{\partial d_1}{\partial \alpha} \nonumber \\
+&=& \frac{-AS\sqrt{t}}{\alpha^2 \delta}\left[N\left(d_1\right)-\frac{n\left(d_1\right)}{V \sqrt{t}} \right]
+\end{eqnarray}
+
+\section{Comparative Statics on Degree of Information Asymmetry Regarding Expected Loss}
+
+Take partial derivative of equity with respect to $\delta$.
+\begin{eqnarray}
+\frac{\partial E}{\partial \delta}&=&A \frac{\partial N\left(d_1\right)}{\partial d_1}\frac{\partial d_1}{\partial \delta}-L\left[ N\left(d_2\right)\right]+\alpha \delta \frac{\partial N\left(d_2\right)}{\partial d_2}\frac{\partial d_2}{\partial \delta}
+\end{eqnarray}
+
+Follow same process as partial with respect to $\alpha$, we find that:
+\begin{equation}
+\frac{\partial E}{\partial \delta}=-\alpha L \left[N\left(d_2\right)\right]
+\end{equation}
+
+Equity value is a decreasing function of deviation between insider and market estimate of expected loss.
+
+\section{Comparative Statics on Degree of Information Asymmetry Regarding Volatility and Expected Loss}
+
+To find the sensitivity of equity value to information asymmetry regarding both volatility and expected loss, we must take cross-partial derivatives.  First, we state Young's theorem:
+
+\begin{theorem}
+Under general conditions, the order in which partial differentiation is conducted to evaluate second-order partial derivatives does not matter.  To wit:
+
+\begin{equation}
+\frac{\partial^2 x}{\partial y \partial z}=\frac{\partial^2 x}{\partial z \partial y}
+\end{equation}
+\end{theorem}
+
+Thus, since the partial derivative of equity with respect to deviation in expected loss estimates is parsimonious and properly signed, we will start with that derivative first.
+
+\begin{eqnarray}
+\frac{\partial ^2 E}{\partial \delta \partial \beta}&=&\frac{\partial -\ln\left(d_2\right)}{\partial \beta} \nonumber\\
+&=&-\frac{\partial d_2/\partial \beta}{d_2} \nonumber \\
+&=&-\frac{Sd_1}{Vd_2}
+\end{eqnarray}
+
+The sensitivity of equity value to disagreement about loss volatility and expected loss depends on both the relationship between degree of disagreement about volatility and the post-swap relationship between asset and loss values. 
+\end{document}
